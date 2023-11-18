@@ -84,8 +84,8 @@ case $backend in
   *) echo >&2 \"Unsupported build backend '$backend'.\" && exit 1;;
 esac")
     (,(rx ".ps1" eos)
-     . "powershell -c '& { param($script) . $script > $null; Get-ChildItem env: |\
-        % {\"$($_.Name)=$($_.Value)`0\"} | Write-Host -NoNewLine } '")
+     . "powershell -c \"& { param($script) . $script > $null; Get-ChildItem env: |\
+        % {\\\"$($_.Name)=$($_.Value)`0\\\"} | Write-Host -NoNewLine } \"")
     (,(rx any)
      . ">&2 . \"$0\" && env -0"))
   "Alist of commands used to produce environment variables.
